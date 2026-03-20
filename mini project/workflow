@@ -1,0 +1,15 @@
+Docker pull nginx
+        ↓
+Start Minikube (K8s cluster)
+        ↓
+Load image into Minikube
+        ↓
+Create YAML (mypod.yaml)
+        ↓
+kubectl apply -f mypod.yaml
+        ↓
+Pod created (nginx running)
+        ↓
+kubectl logs → verify
+        ↓
+kubectl delete → remove pod
