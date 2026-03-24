@@ -1,0 +1,164 @@
+DAY -21
+crown gksrinivas
+12:19
+: Connect Jenkins to Kubernetes Cluster
+
+1. Copy kubeconfig from master node
+File location in master:
+/etc/kubernetes/admin.conf
+
+2. Paste into Jenkins machine:
+1. C:\Users\<user>\.kube\config
+2. C:\Windows\System32\config\systemprofile\.kube
+
+3. Test:
+kubectl get nodes
+keep
+Pinned
+download kubectl on jenkins host machine
+keep
+Pinned
+
+crown gksrinivas
+14:10
+https://docs.ansible.com/projects/ansible/latest/getting_started/index.html
+keep
+Pinned
+
+crown gksrinivas
+14:40
+for master node:
+keep
+#!/bin/bash
+yum install python-pip -y 
+pip install ansible
+keep
+Pinned
+
+crown gksrinivas
+14:46
+for managed nodes:
+keep
+Pinned
+#!/bin/bash
+yum install python-pip -y
+keep
+Pinned
+
+crown gksrinivas
+14:55
+Inventory file location: /etc/ansible/hosts
+keep
+Pinned
+Config file location: /etc/ansible/ansible.cfg
+
+
+crown gksrinivas
+15:01
+# Example config file for ansible -- https://ansible.com/
+# =======================================================
+
+# Nearly all parameters can be overridden in ansible-playbook
+# or with command line flags. Ansible will read ANSIBLE_CONFIG,
+# ansible.cfg in the current working directory, .ansible.cfg in
+# the home directory, or /etc/ansible/ansible.cfg, whichever it
+# finds first
+
+# For a full list of available options, run ansible-config list or see the
+# documentation: https://docs.ansible.com/ansible/latest/reference_appendices/config.html.
+
+[defaults]
+#inventory       = /etc/ansible/hosts
+#library         = ~/.ansible/plugins/modules:/usr/share/ansible/plugins/modules
+#module_utils    = ~/.ansible/plugins/module_utils:/usr/share/ansible/plugins/module_utils
+#remote_tmp      = ~/.ansible/tmp
+#local_tmp       = ~/.ansible/tmp
+#forks           = 5
+#poll_interval   = 0.001
+#ask_pass        = False
+#transport       = smart
+
+# Plays will gather facts by default, which contain information about
+# the remote system.
+#
+# smart - gather by default, but don't regather if already gathered
+# implicit - gather by default, turn off with gather_facts: False
+# explicit - do not gather by default, must say gather_facts: True
+#gathering = implicit
+
+# This only affects the gathering done by a play's gather_facts directive,
+# by default gathering retrieves all facts subsets
+# all - gather all subsets
+# network - gather min and network facts
+# hardware - gather hardware facts (longest facts to retrieve)
+# virtual - gather min and virtual facts
+# facter - import facts from facter
+# ohai - import facts from ohai
+# You can combine them using comma (ex: network,virtual)
+# You can negate them using ! (ex: !hardware,!facter,!ohai)
+# A minimal set of facts is always gathered.
+#
+#gather_subset = all
+
+# some hardware related facts are collected
+# with a maximum timeout of 10 seconds. This
+# option lets you increase or decrease that
+# timeout to something more suitable for the
+# environment.
+#
+#gather_timeout = 10
+
+# Ansible facts are available inside the ansible_facts.* dictionary
+# namespace. This setting maintains the behaviour which was the default prior
+# to 2.5, duplicating these variables into the main namespace, each with a
+# prefix of 'ansible_'.
+# This variable is set to True by default for backwards compatibility. It
+# will be changed to a default of 'False' in a future release.
+#
+#inject_facts_as_vars = True
+
+# Paths to search for collections, colon separated
+# collections_paths = ~/.ansible/collections:/usr/share/ansible/collections
+
+# Paths to search for roles, colon separated
+#roles_path = ~/.ansible/roles:/usr/share/ansible/roles:/etc/ansible/roles
+
+# Host key checking is enabled by default
+#host_key_checking = True
+
+# You can only have one 'stdout' callback type enabled at a time. The default
+# is 'default'. The 'yaml' or 'debug' stdout callback plugins are easier to read.
+#
+#stdout_callback = default
+#stdout_callback = yaml
+#stdout_callback = debug
+
+
+# Ansible ships with some plugins that require whitelisting,
+# this is done to avoid running all of a type by default.
+# These setting lists those that you want enabled for your system.
+# Custom plugins should not need this unless plugin author disables them
+# by default.
+#
+# Enable callback plugins, they can output to stdout but cannot be 'stdout' type.
+#callback_whitelist = timer, mail
+
+# Determine whether includes in tasks and handlers are "static" by
+# default. As of 2.0, includes are dynamic by default. Setting these
+# values to True will make includes behave more like they did in the
+# 1.x versions.
+#
+#task_includes_static = False
+#handler_includes_static = False
+
+# Controls if a missing handler for a notification event is an error or a warning
+#error_on_missing_handler = True
+
+# Default timeout for connection plugins
+#timeout = 10
+
+# Default user to use for playbooks if user is not specified
+# Uses the connection plugin's default, normally the user currently executing Ansible,
+# un
+keep
+Pinned
